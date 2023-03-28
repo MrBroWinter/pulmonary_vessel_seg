@@ -26,7 +26,7 @@ class PreProcess(object):
         size = ct_itk.GetSize()
         original_size = (size[2], size[1], size[0])
         ct_resampled = Resampling(ct_itk, self.median_spacing, label=False)
-        ct_array = sitk.GetArrayFromImage(ct_itk)
+        ct_array = sitk.GetArrayFromImage(ct_resampled)
 
         # ct normalization
         ct_array = ct_array.astype(np.float)

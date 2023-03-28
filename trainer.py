@@ -58,7 +58,7 @@ class Trainer:
         mean_loss = []
         for batch_idx, (ct, target) in enumerate(tqdm(self.train_data_loader)):
             ct = ct.to(self.args.device)
-            target = label2onehot(target, self.args.classes)
+            # target = label2onehot(target, self.args.classes)
             target = target.to(self.args.device)
             output1= self.model(ct)
             # print(output1.shape, target.shape)
@@ -86,7 +86,7 @@ class Trainer:
         for batch_idx, (ct, target) in enumerate(self.valid_data_loader):
             with torch.no_grad():
                 ct = ct.to(self.args.device)
-                target = label2onehot(target, self.args.classes)
+                # target = label2onehot(target, self.args.classes)
                 target = target.to(self.args.device)
                 predict = self.model(ct)
                 loss, _ = self.criterion(predict, target)

@@ -48,7 +48,7 @@ cfg.opt = 'SGD'    #optional: SGD, ADAM, RMSPROP
 # for predict
 cfg.threshold = 0.5
 cfg.test_root_path = r"C:\dongdong.zhao\project\Lung_vessel\val_raw_data"
-cfg.test_save_path = r"C:\dongdong.zhao\project\Lung_vessel\val_raw_data"
+cfg.test_save_path = r"C:\dongdong.zhao\project\Lung_vessel\val_raw_data_predict"
 cfg.used_ckpt = r"./checkpoint/Epoch_256_loss_0.1324_unetpp_classfication.pth"
 
 if __name__ == '__main__':
