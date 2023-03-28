@@ -78,8 +78,9 @@ def predict(cfg, net, patient_path):
     with torch.no_grad():
         res_logits = overlap_predict(net, processed_ct, cfg.patch_size, cfg.classes, rate=2)  # 预测结果
         res = np.argmax(res_logits, axis=0)
-    res_itk = sitk.GetImageFromArray(res)
-    sitk.WriteImage(res_itk, os.path.join(patient_dir, "predict.nii.gz"))
+
+    return res.astype(np.uint8)
+
 
 
 
@@ -101,12 +102,8 @@ if __name__ == '__main__':
 
     for sub in patient_path_list:
         sub_result = predict(cfg, model, sub)
-        print(sub_result)
-        # patient_name = sub.split("\\")[-1]
-        # res_list.append(sub_result[patient_name])
-
-    print("time:{}".format(time.time() - start_time))
-    print("mean dice:", sum(res_list) / len(res_list))
+        res_itk = sitk.GetImageFromArray(sub_result)
+        sitk.WriteImage(res_itk, os.path.join(sub, "predict.nii.gz"))
 
 
 
